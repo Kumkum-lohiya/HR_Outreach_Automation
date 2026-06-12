@@ -1,0 +1,271 @@
+{
+  "name": "AI-Powered HR Outreach Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 10 * * *"
+            }
+          ]
+        }
+      },
+      "name": "Daily Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        560,
+        64
+      ],
+      "id": "103a4ddd-568c-4cd8-9563-d92eb20bac81"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1WScjNutXG1H2JBrQM8R94CnfbObvovup2T-Mb99ThH0",
+          "mode": "list",
+          "cachedResultName": "HR_Outreach",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WScjNutXG1H2JBrQM8R94CnfbObvovup2T-Mb99ThH0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WScjNutXG1H2JBrQM8R94CnfbObvovup2T-Mb99ThH0/edit#gid=0"
+        },
+        "options": {}
+      },
+      "name": "Read HR Data",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        816,
+        64
+      ],
+      "id": "c5b04694-2aba-469d-9cac-22f9d46ce212",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "CU1d0sawjR9gvFmq",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json.Status}}",
+              "operation": "equal",
+              "value2": "Pending"
+            }
+          ],
+          "combinator": "and",
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          }
+        },
+        "options": {}
+      },
+      "name": "Check Pending",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1072,
+        64
+      ],
+      "id": "4e52176b-5c0f-4c7f-bf4e-e2f4b31606a3"
+    },
+    {
+      "parameters": {
+        "resource": "__CUSTOM_API_CALL__",
+        "requestOptions": {}
+      },
+      "name": "Generate AI Email",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [
+        1312,
+        64
+      ],
+      "id": "83a8ec58-c38c-4037-9e47-f0f6c5d1e944",
+      "credentials": {
+        "openAiApi": {
+          "id": "E8RM0hUr7nayhoKy",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "1279_SlCKeOn5r-tHfsOSrTiLtMB6OS0j",
+          "mode": "list",
+          "cachedResultName": "kumkum_resume.docx",
+          "cachedResultUrl": "https://docs.google.com/document/d/1279_SlCKeOn5r-tHfsOSrTiLtMB6OS0j/edit?usp=drivesdk&ouid=107582391504534830191&rtpof=true&sd=true"
+        },
+        "options": {}
+      },
+      "name": "Get Resume",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1568,
+        64
+      ],
+      "id": "5caa4eb8-2823-4a74-a2e7-72850ec39cd5",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "BD2b0yQhs70WmWk5",
+          "name": "Google Drive OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "khushaldak4444@gmail.com",
+        "subject": "Automation",
+        "emailType": "text",
+        "message": "Hello sorry for everything ",
+        "options": {
+          "replyToSenderOnly": true
+        }
+      },
+      "name": "Send Gmail",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [
+        1824,
+        64
+      ],
+      "id": "f8090c32-4428-416b-997d-fbd52c0a7406",
+      "webhookId": "b67d3959-fdab-4058-b685-189c3da06364",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "J98o9aftiXT2WPzq",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "documentId": {
+          "__rl": true,
+          "value": "1WScjNutXG1H2JBrQM8R94CnfbObvovup2T-Mb99ThH0",
+          "mode": "list",
+          "cachedResultName": "HR_Outreach",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WScjNutXG1H2JBrQM8R94CnfbObvovup2T-Mb99ThH0/edit?usp=drivesdk"
+        },
+        "title": "HR_Outreach",
+        "options": {}
+      },
+      "name": "Update Status",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        2064,
+        64
+      ],
+      "id": "8665bc34-c911-40e2-9d9f-bf361fb0903e",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "mkuMzDHZO4kXgRA3",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Daily Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read HR Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read HR Data": {
+      "main": [
+        [
+          {
+            "node": "Check Pending",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Pending": {
+      "main": [
+        [
+          {
+            "node": "Generate AI Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate AI Email": {
+      "main": [
+        [
+          {
+            "node": "Get Resume",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Resume": {
+      "main": [
+        [
+          {
+            "node": "Send Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Gmail": {
+      "main": [
+        [
+          {
+            "node": "Update Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "e3420c96-186a-46ae-9e78-ae038a777381",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f9b5ad2301e7e2701a2aa1c8301a9f557fff807fb97502e1eaffd8f1cf2f3455"
+  },
+  "nodeGroups": [],
+  "id": "UPxBQ8xzzy32bsTA",
+  "tags": []
+}
