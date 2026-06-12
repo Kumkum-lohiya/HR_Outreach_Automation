@@ -1,6 +1,6 @@
 # 🚀 HR Outreach Automation System
 
-![Banner](screenshots/banner.png)
+[Banner](n8n/workflow.png)
 
 ## 📌 Overview
 
@@ -48,17 +48,14 @@ To solve this problem, I built an automated HR Outreach Automation System that s
 
 ## 🔄 Complete Workflow
 
-![Workflow](screenshots/workflow.png)
-
 HR Data Collection → AI Email Generation → Gmail Automation → Response Tracking → AI Reply Analysis → Automatic Follow-Up → Status Update
 
----
 
 ## ✉️ AI Email Generation
 
 Automatically generates personalized HR outreach emails based on company, role, and candidate profile.
 
-![Email Generation](screenshots/email-generation.png)
+![Email Generation](n8n/generateEmail.png)
 
 ---
 
@@ -66,15 +63,7 @@ Automatically generates personalized HR outreach emails based on company, role, 
 
 AI analyzes incoming HR responses and categorizes them into different statuses.
 
-![Response Tracking](screenshots/response-tracking.png)
-
----
-
-## 🔁 Automated Follow-Up System
-
-Sends intelligent follow-up emails when no response is received within a predefined timeframe.
-
-![Follow-Up Automation](screenshots/followup-automation.png)
+![Response Tracking](n8n/lastnode.png)
 
 ---
 
@@ -82,7 +71,7 @@ Sends intelligent follow-up emails when no response is received within a predefi
 
 Track all outreach activities, application status, follow-up counts, and HR responses from a centralized dashboard.
 
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](n8n/googlesheet.png)
 
 ---
 
@@ -142,6 +131,6 @@ Khushal Dak
 
 📧 AI Automation | Data Analytics | Workflow Engineering
 
-GitHub: https://github.com/Khushal-dak
+GitHub:https://github.com/Kumkum-lohiya
 
-LinkedIn: https://www.linkedin.com/in/khushal-dak
+LinkedIn:https://www.linkedin.com/in/kumkum-lohiya/
